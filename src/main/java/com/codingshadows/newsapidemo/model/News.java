@@ -1,17 +1,28 @@
 package com.codingshadows.newsapidemo.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class News {
-    private final UUID id;
-    private final Author author;
-    private final List<Comment> comments;
-    private final String title;
-    private final List<String> body;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne
+    private Author author;
+    @OneToMany
+    private List<Comment> comments;
+    private String title;
+    @ElementCollection
+    @Column(columnDefinition = "nvarchar(MAX)")
+    private List<String> body;
 }

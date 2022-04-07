@@ -9,13 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 @Service
 public class NewsGeneratorService {
 
-    public News generateNews(int commentsUpperBound, int paragraphsUpperBound) {
-        return News.builder().id(UUID.randomUUID()).author(generateAuthor()).title(generateNewsTitle()).body(generateBody(paragraphsUpperBound)).comments(generateComments(commentsUpperBound)).build();
+    public News generateNews(Author author, List<Comment> comments, int paragraphsUpperBound) {
+        return News.builder().author(author).title(generateNewsTitle()).body(generateBody(paragraphsUpperBound)).comments(comments).build();
     }
 
     private List<String> generateBody(int paragraphsUpperBound) {
@@ -27,21 +26,12 @@ public class NewsGeneratorService {
         return body;
     }
 
-    private List<Comment> generateComments(int commentsUpperBound) {
-        List<Comment> comments = new ArrayList<>();
-        int numComments = new Random().nextInt(commentsUpperBound);
-        for (int i = 0; i < numComments; ++i) {
-            comments.add(generateComment());
-        }
-        return comments;
+    public Comment generateComment(Author author) {
+        return Comment.builder().author(author).body(generateCommentBody()).build();
     }
 
-    private Comment generateComment() {
-        return Comment.builder().id(UUID.randomUUID()).author(generateAuthor()).body(generateCommentBody()).build();
-    }
-
-    private Author generateAuthor() {
-        return Author.builder().id(UUID.randomUUID()).name(generateAuthorName()).description(generateAuthorDescription()).build();
+    public Author generateAuthor() {
+        return Author.builder().name(generateAuthorName()).description(generateAuthorDescription()).build();
     }
 
     private String generateAuthorName() {
