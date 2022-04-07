@@ -18,7 +18,7 @@ public class CommentService {
 
     public List<Comment> generateCommentList(int commentsUpperBound) {
         List<Comment> comments = new ArrayList<>();
-        int numComments = new Random().nextInt(commentsUpperBound);
+        int numComments = new Random().nextInt(commentsUpperBound) + 1;
         for (int i = 0; i < numComments; ++i) {
             comments.add(commentRepository.save(newsGeneratorService.generateComment(authorService.getRandomAuthor())));
         }
