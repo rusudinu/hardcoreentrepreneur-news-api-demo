@@ -1,8 +1,5 @@
 package com.codingshadows.newsapidemo.service;
 
-import com.codingshadows.newsapidemo.model.Author;
-import com.codingshadows.newsapidemo.model.Comment;
-import com.codingshadows.newsapidemo.model.News;
 import com.thedeanda.lorem.LoremIpsum;
 import org.springframework.stereotype.Service;
 
