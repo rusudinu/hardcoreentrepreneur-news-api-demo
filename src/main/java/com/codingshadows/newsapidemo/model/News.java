@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.AttributeAccessor;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
-@Builder
 @Entity
+@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class News {

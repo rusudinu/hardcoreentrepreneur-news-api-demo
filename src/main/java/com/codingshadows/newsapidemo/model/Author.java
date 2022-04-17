@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
-@Builder
 @Entity
+@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public final class Author {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
